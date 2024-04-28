@@ -31,7 +31,6 @@ class FileStorage:
             for key, value in self.__objects.items():
                 if cls == value.__class__ or cls == value.__class__.__name__:
                     new_dict[key] = value
-                return None
             return new_dict
         return self.__objects
 
@@ -76,13 +75,14 @@ class FileStorage:
             return None
         key = cls + '.' + id
         return self.__objects.get(key, None)
-    
+
     def count(self, cls=None):
         """count number of objects in storage"""
         if cls is None:
             return len(self.__objects)
         count = 0
         for key in self.__objects:
-            if cls == self.__objects[key].__class__ or cls == self.__objects[key].__class__.__name__:
-                count += 1
+            if (cls == self.__objects[key].__class__ or
+                cls == self.__objects[key].__class__.__name__:
+                count += 1)
         return count
