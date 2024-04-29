@@ -21,10 +21,12 @@ def close_storage(exception):
     """Close the current SQLAlchemy session."""
     storage.close()
 
+
 @app.errorhandler(404)
 def page_not_found(exception):
     """Return a JSON-formatted 404 page."""
     return jsonify({"error": "Not found"})
+
 
 if __name__ == "__main__":
     host = os.getenv('HBNB_API_HOST', '0.0.0.0')
