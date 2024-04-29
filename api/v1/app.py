@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+starts the flask application
+"""
 
 
 import os
