@@ -8,9 +8,13 @@ import os
 from flask import Flask, jsonify
 from models import storage
 from api.v1.views import app_views
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+
+
+CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 
 app.register_blueprint(app_views)
@@ -25,7 +29,7 @@ def close_storage(exception):
 @app.errorhandler(404)
 def page_not_found(exception):
     """Return a JSON-formatted 404 page."""
-    return jsonify({"error": "Not found"})
+    return jsonify({"error": "Not found"}), 404
 
 
 if __name__ == "__main__":
