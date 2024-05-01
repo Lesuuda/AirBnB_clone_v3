@@ -7,7 +7,7 @@ from models.place import Place
 from models.city import City
 from models.user import User
 from api.v1.views import app_views, storage
-import json
+
 
 @app_views.route('/cities/<city_id>/places', methods=['GET'],
                  strict_slashes=False)
@@ -52,7 +52,6 @@ def create_place(city_id):
     if not request.get_json():
         abort(400, 'Not a JSON')
     data = request.get_json()
-    print("Received json data:", json.dumps(data))
     if 'user_id' not in data:
         abort(400, 'Missing user_id')
     user_id = data['user_id']
