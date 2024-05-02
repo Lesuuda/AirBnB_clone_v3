@@ -18,17 +18,19 @@ CORS(app, resources={r"/*": {"origins": "0.0.0.0"}})
 
 app.register_blueprint(app_views)
 
+
 @app.teardown_appcontext
 def teardown_appcontext(exception):
     """Closes the storage"""
-    storage.close() 
+    storage.close()
+
 
 @app.errorhandler(404)
 def page_not_found(exception):
     """Return a JSON-formatted 404 page."""
     return jsonify({"error": "Not found"}), 404
-    
-    
+
+
 if __name__ == "__main__":
     """runs the flask server"""
     host = os.getenv('HBNB_API_HOST', '0.0.0.0')
